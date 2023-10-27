@@ -19,12 +19,14 @@ ul {
     padding: 10;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 li {
     font-size: 40px;
     margin: 0 20px;
     display: inline-block;
     justify-content: center;
+    align-items: center;
     padding: 10px;
     border: 1px solid #333;
     border-radius: 5px;
@@ -34,4 +36,12 @@ a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
+}
+.logo {
+    height: 150px;
+    width: 100px;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
 }
