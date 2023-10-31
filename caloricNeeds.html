@@ -1,84 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Imperial Units Calculator</title>
-    <script src="caloricNeeds.js"></script>
+    <title>Ideal Weight and Total Daily Caloric Needs Calculator</title>
+    <script src="./caloricNeeds.js"></script>
 </head>
 <body>
-    <h1>Imperial Units Calculator</h1>
-    
-    <h2>Basal Metabolic Rate (BMR) Calculator</h2>
-    <form id="bmr-form">
-        <label for="bmr-gender">Gender:</label>
-        <select id="bmr-gender">
-            <option value="female">Female</option>
+    <h1>Ideal Weight and Total Daily Caloric Needs Calculator</h1>
+
+    <form id="calculatorForm">
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
             <option value="male">Male</option>
-        </select><br>
-        
-        <label for="bmr-age">Age:</label>
-        <input type="number" id="bmr-age"><br>
-        
-        <label for="bmr-height">Height (in inches):</label>
-        <input type="number" id="bmr-height"><br>
-        
-        <label for="bmr-weight">Weight (in pounds):</label>
-        <input type="number" id="bmr-weight"><br>
-        
-        <button type="button" onclick="calculateBMR()">Calculate BMR</button>
-    </form>
-    
-    <h2>Total Daily Energy Expenditure (TDEE) Calculator</h2>
-    <form id="tdee-form">
-        <label for="tdee-gender">Gender:</label>
-        <select id="tdee-gender">
             <option value="female">Female</option>
-            <option value="male">Male</option>
-        </select><br>
-        
-        <label for="tdee-age">Age:</label>
-        <input type="number" id="tdee-age"><br>
-        
-        <label for="tdee-height">Height (in inches):</label>
-        <input type="number" id="tdee-height"><br>
-        
-        <label for="tdee-weight">Weight (in pounds):</label>
-        <input type="number" id="tdee-weight"><br>
-        
-        <label for="activity-level">Activity Level:</label>
-        <select id="activity-level">
+        </select>
+        <br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+        <br>
+
+        <label for="height">Height:</label>
+        <input type="number" id="height" name="height" required>
+        <br>
+
+        <label for="weight">Weight:</label>
+        <input type="number" id="weight" name="weight" required>
+        <br>
+
+        <label for="activity_level">Activity Level:</label>
+        <select id="activity_level" name="activity_level">
             <option value="sedentary">Sedentary</option>
             <option value="light">Light</option>
             <option value="moderate">Moderate</option>
             <option value="high">High</option>
             <option value="extreme">Extreme</option>
-        </select><br>
-        
-        <button type="button" onclick="calculateTDEE()">Calculate TDEE</button>
+        </select>
+        <br>
+
+        <label for="goal">Goal:</label>
+        <select id="goal" name="goal">
+            <option value="reduction">Weight Reduction</option>
+            <option value="maintain">Maintain Weight</option>
+            <option value="gain">Weight Gain</option>
+        </select>
+        <br>
+
+        <label for="approach">Approach:</label>
+        <select id="approach" name="approach">
+            <option value="slow">Slow</option>
+            <option value="normal">Normal</option>
+            <option value="agressive">Agressive</option>
+            <option value="very agressive">Very Agressive</option>
+        </select>
+        <br>
+
+        <button type="button" onclick="calculate()">Calculate</button>
     </form>
-    
+
+    <div id="results"></div>
+
     <script>
-        function calculateBMR() {
-            let gender = document.getElementById("bmr-gender").value;
-            let age = parseInt(document.getElementById("bmr-age").value);
-            let height = parseInt(document.getElementById("bmr-height").value);
-            let weight = parseInt(document.getElementById("bmr-weight").value);
-            
-            let bmr = window.bmr(gender, age, height, weight);
-            
-            alert("Your BMR is: " + bmr);
-        }
-        
-        function calculateTDEE() {
-            let gender = document.getElementById("tdee-gender").value;
-            let age = parseInt(document.getElementById("tdee-age").value);
-            let height = parseInt(document.getElementById("tdee-height").value);
-            let weight = parseInt(document.getElementById("tdee-weight").value);
-            let activityLevel = document.getElementById("activity-level").value;
-            
-            let tdee = window.tdee(gender, age, height, weight, activityLevel);
-            
-            alert("Your TDEE is: " + tdee);
+        function calculate() {
+            var gender = document.getElementById("gender").value;
+            var age = parseInt(document.getElementById("age").value);
+            var height = parseInt(document.getElementById("height").value);
+            var weight = parseInt(document.getElementById("weight").value);
+            var activityLevel = document.getElementById("activity_level").value;
+            var goal = document.getElementById("goal").value;
+            var approach = document.getElementById("approach").value;
+
+            try {
+                var idealWeight = caloricNeeds.idealBodyWeight(height, gender);
+                var caloricNeeds = caloricNeeds.caloricNeeds(gender, age, height, weight, activityLevel, goal, approach);
+                document.getElementById("results").innerHTML = "Ideal Weight: " + idealWeight + "<br> Total Daily Caloric Needs: " + caloricNeeds;
+            } catch (error) {
+                document.getElementById("results").innerHTML = error.message;
+            }
         }
     </script>
 </body>
 </html>
+
