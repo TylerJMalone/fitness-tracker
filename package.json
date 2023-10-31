@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "fitness-health-calculations": "^1.0.2"
+    "fitness-health-calculations": "^1.0.2",
+    "request": "^2.88.2"
   }
 }
