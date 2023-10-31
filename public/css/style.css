@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body {
-    background-image: url("./images/background.jpg");
+    background-image: url("/Users/tylerm/Desktop/bootcamp/fitness-tracker/images/background.jpg");
     background-size: cover;
     background-repeat: repeat;
     height: 100vh;
@@ -22,3 +22,12 @@ body {
     padding-right: 25px;
     margin: 5px;
 }
+#exercise img {
+    transition: all 0.2s ease-in-out;
+    opacity: 85%;
+}
+#exercise img:hover {
+    opacity: 100%;
+    transform: scale(1.1);
+}
+
