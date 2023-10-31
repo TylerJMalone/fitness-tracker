@@ -5,7 +5,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(document).ready(function() {
-      // Function to handle form submission
       $("form").submit(function(event) {
         event.preventDefault();
         var muscle = $("#muscle").val();
@@ -15,34 +14,54 @@
         searchExercises(muscle, name, type, difficulty);
       });
 
-      // Function to make API request and display results
       function searchExercises(muscle, name, type, difficulty) {
-        const request = require('request');
-        request.get({
+        $.ajax({
           url: 'https://api.api-ninjas.com/v1/exercises',
           headers: {
             'X-Api-Key': 'Xb/8y5d1vpgSJrMT3IJR3w==xkE9qZbCraaAFbxJ'
           },
-          qs: {
+          data: {
+            muscle: muscle,
             name: name,
             type: type,
-            muscle: muscle,
             difficulty: difficulty
-          }
-        }, function(error, response, body) {
-          if (error) {
+          },
+          success: function(results) {
+            displayResults(results);
+          },
+          error: function(error) {
             console.error('Request failed:', error);
-          } else if (response.statusCode !== 200) {
-            console.error('Error:', response.statusCode, body.toString('utf8'));
-          } else {
-            console.log(body);
-            // Display the results on the page instead of console.log
-            // You can use jQuery or plain JavaScript to update the HTML
           }
         });
       }
+
+      function displayResults(results) {
+        var resultContainer = $("#result-container");
+        resultContainer.empty();
+
+        if (results.length == 0) {
+          resultContainer.append("<p>No exercises found.</p>");
+        } else {
+          for (var i = 0; i < results.length; i++) {
+            var exercise = results[i];
+            var exerciseItem = $("<div>").addClass("exercise-item");
+            exerciseItem.append($("<h2>").text(exercise.name));
+            exerciseItem.append($("<p>").text("Type: " + exercise.type));
+            exerciseItem.append($("<p>").text("Muscle: " + exercise.muscle));
+            exerciseItem.append($("<p>").text("Difficulty: " + exercise.difficulty));
+            resultContainer.append(exerciseItem);
+          }
+        }
+      }
     });
   </script>
+  <style>
+    .exercise-item {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: lightgray;
+    }
+  </style>
 </head>
 <body>
   <h1>Exercise Search</h1>
@@ -93,5 +112,6 @@
     <br>
     <button type="submit">Search</button>
   </form>
+  <div id="result-container"></div>
 </body>
 </html>
