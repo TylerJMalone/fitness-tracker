@@ -1,5 +1,6 @@
 //To install: npm i fitness-health-calculations
-
+//To use: const caloricNeeds = require('fitness-health-calculations');
+const caloricNeeds = require('fitness-health-calculations');
 
 'use strict';
 
@@ -146,4 +147,3 @@ module.exports.idealBodyWeight = function idealBodyWeight(height, gender, units 
         return new Error('Units parameter can only be metric or imperial');
     }
 }
-
