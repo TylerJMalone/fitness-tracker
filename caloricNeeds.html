@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Ideal Weight and Total Daily Caloric Needs Calculator</title>
-    <script src="./caloricNeeds.js"></script>
 </head>
 <body>
     <h1>Ideal Weight and Total Daily Caloric Needs Calculator</h1>
 
     <form id="calculatorForm">
+        <!-- Form inputs here -->
         <label for="gender">Gender:</label>
         <select id="gender" name="gender">
             <option value="male">Male</option>
@@ -70,14 +70,15 @@
             var approach = document.getElementById("approach").value;
 
             try {
+                var dailyCaloricNeeds = caloricNeeds.caloricNeeds(gender, age, height, weight, activityLevel, goal, approach);
                 var idealWeight = caloricNeeds.idealBodyWeight(height, gender);
-                var caloricNeeds = caloricNeeds.caloricNeeds(gender, age, height, weight, activityLevel, goal, approach);
-                document.getElementById("results").innerHTML = "Ideal Weight: " + idealWeight + "<br> Total Daily Caloric Needs: " + caloricNeeds;
+                document.getElementById("results").innerHTML = "Ideal Weight: " + idealWeight + "<br> Total Daily Caloric Needs: " + dailyCaloricNeeds;
             } catch (error) {
                 document.getElementById("results").innerHTML = error.message;
             }
         }
     </script>
+    <script src="./caloricNeeds.js"></script>
 </body>
 </html>
 
