@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<<<<<<< HEAD
+<html>
+<head>
+    <title>Imperial Units Calculator</title>
+    <script src="caloricNeeds.js"></script>
+</head>
+<body>
+    <h1>Imperial Units Calculator</h1>
+    
+    <h2>Basal Metabolic Rate (BMR) Calculator</h2>
+    <form id="bmr-form">
+        <label for="bmr-gender">Gender:</label>
+        <select id="bmr-gender">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+        </select><br>
+        
+        <label for="bmr-age">Age:</label>
+        <input type="number" id="bmr-age"><br>
+        
+        <label for="bmr-height">Height (in inches):</label>
+        <input type="number" id="bmr-height"><br>
+        
+        <label for="bmr-weight">Weight (in pounds):</label>
+        <input type="number" id="bmr-weight"><br>
+        
+        <button type="button" onclick="calculateBMR()">Calculate BMR</button>
+    </form>
+    
+    <h2>Total Daily Energy Expenditure (TDEE) Calculator</h2>
+    <form id="tdee-form">
+        <label for="tdee-gender">Gender:</label>
+        <select id="tdee-gender">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+        </select><br>
+        
+        <label for="tdee-age">Age:</label>
+        <input type="number" id="tdee-age"><br>
+        
+        <label for="tdee-height">Height (in inches):</label>
+        <input type="number" id="tdee-height"><br>
+        
+        <label for="tdee-weight">Weight (in pounds):</label>
+        <input type="number" id="tdee-weight"><br>
+        
+        <label for="activity-level">Activity Level:</label>
+        <select id="activity-level">
+            <option value="sedentary">Sedentary</option>
+            <option value="light">Light</option>
+            <option value="moderate">Moderate</option>
+            <option value="high">High</option>
+            <option value="extreme">Extreme</option>
+        </select><br>
+        
+        <button type="button" onclick="calculateTDEE()">Calculate TDEE</button>
+    </form>
+    
+    <script>
+        function calculateBMR() {
+            let gender = document.getElementById("bmr-gender").value;
+            let age = parseInt(document.getElementById("bmr-age").value);
+            let height = parseInt(document.getElementById("bmr-height").value);
+            let weight = parseInt(document.getElementById("bmr-weight").value);
+            
+            let bmr = window.bmr(gender, age, height, weight);
+            
+            alert("Your BMR is: " + bmr);
+        }
+        
+        function calculateTDEE() {
+            let gender = document.getElementById("tdee-gender").value;
+            let age = parseInt(document.getElementById("tdee-age").value);
+            let height = parseInt(document.getElementById("tdee-height").value);
+            let weight = parseInt(document.getElementById("tdee-weight").value);
+            let activityLevel = document.getElementById("activity-level").value;
+            
+            let tdee = window.tdee(gender, age, height, weight, activityLevel);
+            
+            alert("Your TDEE is: " + tdee);
+        }
+    </script>
+</body>
+</html>
+=======
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweatSmart</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+
+    <body>
+            <nav class ="navbar navbar-expand-md navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img class="logo" src="./images/SweatSmart-Logo.png" width="100" height="100" class="d-incline-block align-top" alt="Logo">
+                    </a>
+                    <ul class="navbar-nav cust-nav-bar" >
+                        <li class="nav-item"><a class="nav-link" href="#">Exercises</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Stretches</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Health Trackers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Favorites</a></li>
+                    </ul>
+                    <div class="navbar-text">Join the movement and Sweat Smarter with SweatSmart</div>
+                </div>
+            </nav>
+
+            <div class="container col-xxl-8 px-4 py-5">
+                <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                    <div class="col-10 col-sm-8 col-lg-6 opacity-75">
+                        <img src="./images/hero2.jpg" class="d-block mx-lg-auto img-fluid" alt="man doing workout" width="700" height="500">
+                    </div>
+                <div class="col-lg-6">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">SweatSmart</h1>
+                    <p class="lead">
+                        SweatSmart is a fitness app that allows you to track your workouts and see your progress.
+                        You can also add your favorite exercises and stretches to your favorites page.
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Sign up</button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Learn More</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="d-flex justify-content-center">
+                        <h1 class="title">Learn a new exercise!</h1>
+                </div>
+            </div>
+
+            
+        
+            
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </body>
+</html>
+>>>>>>> b317db49caf41dc7e36b6d355cdd31403ab9c727
