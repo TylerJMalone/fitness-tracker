@@ -2,12 +2,14 @@
 <html>
 <head>
     <title>Ideal Weight and Total Daily Caloric Needs Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="<KEY>" crossorigin="anonymous">
+        <link rel="stylesheet" href="./public/css/style.css">
     <script src="./caloricNeeds.js"></script>
 </head>
 <body>
-    <h1>Ideal Weight and Total Daily Caloric Needs Calculator</h1>
+    <h1 class="title d-flex col-12 justify-content-center">Ideal Weight and Total Daily Caloric Needs Calculator</h1>
 
-    <form id="calculatorForm">
+    <form class="col-12 text-center" id="calculatorForm">
         <!-- Form inputs here -->
         <label for="gender">Gender:</label>
         <select id="gender" name="gender">
@@ -55,7 +57,7 @@
         </select>
         <br>
 
-        <button type="button" onclick="calculate()">Calculate</button>
+        <button class="custom-button" type="button" onclick="calculate()">Calculate</button>
     </form>
 
     <div id="results"></div>

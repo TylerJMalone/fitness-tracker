@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Exercise Search</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="./public/css/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
@@ -65,8 +67,8 @@
   </style>
 </head>
 <body>
-  <h1>Exercise Search</h1>
-  <form>
+  <h1 class="title d-flex col-12 justify-content-center">Exercise Search</h1>
+  <form class="col-12 text-center" id ="search-form">
     <label for="muscle">Muscle:</label>
     <select id="muscle">
       <option value="">All</option>
@@ -111,7 +113,7 @@
       <option value="expert">Expert</option>
     </select>
     <br>
-    <button type="submit">Search</button>
+    <button class="custom-button" type="submit">Search</button>
   </form>
   <div id="result-container"></div>
 
