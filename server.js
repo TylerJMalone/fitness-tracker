@@ -30,7 +30,7 @@ app.get('/caloricNeeds', (req, res) => {
   res.render('caloricNeeds');
 });
 
-// app.use(routes);
+app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));

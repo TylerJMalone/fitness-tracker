@@ -1,9 +1,9 @@
 const express = require('express');
-const routes = require('./routes');
+const routes = require('../controllers/homeRoutes');
 
 const app = express();
 
-app.use('/', homeRoutes);
+app.use('/', routes);
 
 // ... other middleware and routing configurations
 
