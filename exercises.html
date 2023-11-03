@@ -14,10 +14,11 @@
         var name = $("#name").val();
         var type = $("#type").val();
         var difficulty = $("#difficulty").val();
-        searchExercises(muscle, name, type, difficulty);
+        var instructions = $("#instructions").val();
+        searchExercises(muscle, name, type, difficulty, instructions);
       });
 
-      function searchExercises(muscle, name, type, difficulty) {
+      function searchExercises(muscle, name, type, difficulty, instructions) {
         $.ajax({
           url: 'https://api.api-ninjas.com/v1/exercises',
           headers: {
@@ -27,7 +28,8 @@
             muscle: muscle,
             name: name,
             type: type,
-            difficulty: difficulty
+            difficulty: difficulty,
+            instructions: instructions,
           },
           success: function(results) {
             displayResults(results);
@@ -52,19 +54,13 @@
             exerciseItem.append($("<p>").text("Type: " + exercise.type));
             exerciseItem.append($("<p>").text("Muscle: " + exercise.muscle));
             exerciseItem.append($("<p>").text("Difficulty: " + exercise.difficulty));
+            exerciseItem.append($("<p>").text("Instructions: " + exercise.instructions));
             resultContainer.append(exerciseItem);
           }
         }
       }
     });
   </script>
-  <style>
-    .exercise-item {
-      margin-bottom: 10px;
-      padding: 10px;
-      background-color: lightgray;
-    }
-  </style>
 </head>
 <body>
   <h1 class="title d-flex col-12 justify-content-center">Exercise Search</h1>
