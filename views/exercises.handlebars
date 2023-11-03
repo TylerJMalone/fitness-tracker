@@ -1,3 +1,60 @@
+    <script>
+    $(document).ready(function() {
+      $("form").submit(function(event) {
+        event.preventDefault();
+        var muscle = $("#muscle").val();
+        var name = $("#name").val();
+        var type = $("#type").val();
+        var difficulty = $("#difficulty").val();
+        var instructions = $("#instructions").val();
+        searchExercises(muscle, name, type, difficulty, instructions);
+      });
+
+      function searchExercises(muscle, name, type, difficulty, instructions) {
+        $.ajax({
+          url: 'https://api.api-ninjas.com/v1/exercises',
+          headers: {
+            'X-Api-Key': 'Xb/8y5d1vpgSJrMT3IJR3w==xkE9qZbCraaAFbxJ'
+          },
+          data: {
+            muscle: muscle,
+            name: name,
+            type: type,
+            difficulty: difficulty,
+            instructions: instructions,
+          },
+          success: function(results) {
+            displayResults(results);
+          },
+          error: function(error) {
+            console.error('Request failed:', error);
+          }
+        });
+      }
+
+      function displayResults(results) {
+        var resultContainer = $("#result-container");
+        resultContainer.empty();
+
+        if (results.length == 0) {
+          resultContainer.append("<p>No exercises found.</p>");
+        } else {
+          for (var i = 0; i < results.length; i++) {
+            var exercise = results[i];
+            var exerciseItem = $("<div>").addClass("exercise-item");
+            exerciseItem.append($("<h2>").text(exercise.name));
+            exerciseItem.append($("<p>").text("Type: " + exercise.type));
+            exerciseItem.append($("<p>").text("Muscle: " + exercise.muscle));
+            exerciseItem.append($("<p>").text("Difficulty: " + exercise.difficulty));
+            exerciseItem.append($("<p>").text("Instructions: " + exercise.instructions));
+            resultContainer.append(exerciseItem);
+          }
+        }
+      }
+    });
+  </script>
+
+
   <h1 class="title d-flex col-12 justify-content-center">Exercise Search</h1>
   <form class="col-12 text-center" id ="search-form">
     <label for="muscle">Muscle:</label>
