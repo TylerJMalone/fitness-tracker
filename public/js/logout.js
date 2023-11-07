@@ -13,3 +13,8 @@ const logout = async () => {
 
 var logOutBtn = $('#logout');
 logOutBtn.on('click', logout);
+
+var logInBtn = $('#login');
+logInBtn.on('click', function() {
+  window.location.replace('/login');
+});
