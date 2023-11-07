@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
   });
 
 router.get('/signup', (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.loggedIn) {
     res.redirect('/');
     return;
   }
@@ -79,21 +79,8 @@ router.post('/logout', (req, res) => {
   }
 });
 
-app.get('/exercises', async (req, res) => {
-  try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
-    });
-
-    const users = userData.map((project) => project.get({ plain: true }));
-    res.render('exercises', {
-      users,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+app.get('/exercises', async, withAuth, (req, res) => {
+    res.render('exercises');
 });
 
 module.exports = router;
