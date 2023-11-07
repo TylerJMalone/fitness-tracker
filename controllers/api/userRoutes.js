@@ -9,7 +9,6 @@ router.post('/', async (req, res) => {
         email: req.body.email,
         password: req.body.password,
       });
-      console.log(req.body);
       req.session.save(() => {
         req.session.logged_in = true;
   
@@ -20,6 +19,24 @@ router.post('/', async (req, res) => {
       res.status(500).json(err);
     }
 });
+
+router.post('/:id/favorites', withAuth, async (req, res) => {
+    try {
+        const dbFavData = await Favorite.create({
+          name: req.body.name,
+          type: req.body.type,
+          muscle: req.body.muscle,
+          difficulty: req.body.difficulty,
+          instructions: req.body.instructions,
+          user_id: req.session.user_id
+        });
+        console.log(req.body);
+        res.status(200).json(dbFavData);
+      } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+      }    
+})
 
 // Login
 router.post('/login', async (req, res) => {

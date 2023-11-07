@@ -61,17 +61,17 @@ $(document).ready(function() {
       var type = textItems[2].innerHTML;
       var muscle = textItems[3].innerHTML;
       var difficulty = textItems[4].innerHTML;
-      var instruction = textItems[5].innerHTML;
+      var instructions = textItems[5].innerHTML;
       const response = await fetch('/api/users/favorites', {
         method: 'POST',
-        body: JSON.stringify({ name, type, muscle, difficulty, instruction }),
+        body: JSON.stringify({ name, type, muscle, difficulty, instructions }),
         headers: { 'Content-Type': 'application/json' },
         });
     
         if (response.ok) {
           alert('Added to favorites');
         } else {
-          alert('Failed to log in');
+          alert('Failed to add');
         }
       }
     });
