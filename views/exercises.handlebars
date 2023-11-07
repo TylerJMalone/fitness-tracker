@@ -24,6 +24,7 @@
             instructions: instructions,
           },
           success: function(results) {
+            console.log(results[0]);
             displayResults(results);
           },
           error: function(error) {
@@ -35,6 +36,7 @@
       function displayResults(results) {
         var resultContainer = $("#result-container");
         resultContainer.empty();
+        var favLink = $("<p>").text("Add to favorites");
 
         if (results.length == 0) {
           resultContainer.append("<p>No exercises found.</p>");
@@ -42,6 +44,9 @@
           for (var i = 0; i < results.length; i++) {
             var exercise = results[i];
             var exerciseItem = $("<div>").addClass("exercise-item");
+            var favLink = $("<p>").text("Add to favorites").addClass('fav-link');
+            exerciseItem.append(favLink);
+            console.log(favLink);
             exerciseItem.append($("<h2>").text(exercise.name));
             exerciseItem.append($("<p>").text("Type: " + exercise.type));
             exerciseItem.append($("<p>").text("Muscle: " + exercise.muscle));
