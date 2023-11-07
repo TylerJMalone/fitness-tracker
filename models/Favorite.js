@@ -41,10 +41,10 @@ Favorite.init(
         }
     },
     {
-            sequelize,
-            freezeTableName: true,
-            modelName: 'favorite'
-        }
-    );
+        sequelize,
+        freezeTableName: true,
+        modelName: 'favorite'
+    }
+);
 
 module.exports = Favorite;
