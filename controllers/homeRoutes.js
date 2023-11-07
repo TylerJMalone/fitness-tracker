@@ -20,6 +20,16 @@ router.post('/', async (req, res) => {
       res.status(500).json(err);
     }
   });
+
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+  
+  res.render('signup');
+});
+
 // Login
 router.post('/login', async (req, res) => {
   try {
