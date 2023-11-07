@@ -54,24 +54,27 @@ $(document).ready(function() {
       }
     }
   }
-  resultContainer.on('click', function getItem(e) {
+  resultContainer.on('click', async function getItem(e) {
     if(e.target.className === 'fav-link') {
       var textItems = e.target.parentNode.children;
-      var nameString = `"name": "${textItems[1].innerHTML}"`;
-      var typeString = `"type": "${textItems[2].innerHTML}"`;
-      var muscleString = `"muscle": "${textItems[3].innerHTML}"`;
-      var difficultyString = `"difficulty": "${textItems[4].innerHTML}"`;
-      var instructionString = `"instructions": "${textItems[5].innerHTML}"`;
-      var jsonString = `{ 
-      ${nameString},
-      ${typeString},
-      ${muscleString},
-      ${difficultyString},
-      ${instructionString}
-      },`
-      //saveItem(jsonString);
-    }
-  });
+      var name = textItems[1].innerHTML;
+      var type = textItems[2].innerHTML;
+      var muscle = textItems[3].innerHTML;
+      var difficulty = textItems[4].innerHTML;
+      var instruction = textItems[5].innerHTML;
+      const response = await fetch('/api/users/favorites', {
+        method: 'POST',
+        body: JSON.stringify({ name, type, muscle, difficulty, instruction }),
+        headers: { 'Content-Type': 'application/json' },
+        });
+    
+        if (response.ok) {
+          alert('Added to favorites');
+        } else {
+          alert('Failed to log in');
+        }
+      }
+    });
 });
 //Parameters
 //name (optional) - name of exercise. This value can be partial (e.g. press will match Dumbbell Bench Press)
