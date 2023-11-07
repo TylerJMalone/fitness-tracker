@@ -1,8 +1,8 @@
-const fs = require('fs');
+//const fs = require('fs');
 
 
-function saveItem(string) {
-    fs.appendFile('favorites.json', string);
-}
+//function saveItem(string) {
+    //fs.appendFile('favorites.json', string);
+//}
 
-module.exports = saveItem;
+//module.exports = saveItem;

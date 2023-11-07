@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  const saveItem = require('./favorites');
   var resultContainer = $("#result-container");
   $("form").submit(function(event) {
     event.preventDefault();
@@ -70,7 +69,7 @@ $(document).ready(function() {
       ${difficultyString},
       ${instructionString}
       },`
-      saveItem(jsonString);
+      //saveItem(jsonString);
     }
   });
 });
