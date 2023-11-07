@@ -1,71 +1,47 @@
 const router = require('express').Router();
 const { User } = require('../models');
+const withAuth = require('../utils/auth');
 
-// CREATE new user
-router.post('/', async (req, res) => {
-    try {
-      const dbUserData = await User.create({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-      });
-  
-      req.session.save(() => {
-        req.session.loggedIn = true;
-  
-        res.status(200).json(dbUserData);
-      });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-  });
-// Login
-router.post('/login', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const dbUserData = await User.findOne({
-      where: {
-        email: req.body.email,
-      },
-    });
+    const userData = await User.findAll();
 
-    if (!dbUserData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
-      return;
-    }
+    const users = userData.map((project) => project.get({ plain: true }));
 
-    const validPassword = await dbUserData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
-      return;
-    }
-
-    req.session.save(() => {
-      req.session.loggedIn = true;
-
-      res
-        .status(200)
-        .json({ user: dbUserData, message: 'You are now logged in!' });
+    res.render('homepage', {
+      users,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+      res.status(500).json(err);
   }
 });
 
-// Logout
-router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+  
+  res.render('signup');
+});
+
+router.get('/exercises', withAuth, async (req, res) => {
+    res.render('exercises');
+});
+
+router.get('/caloricNeeds', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findAll();
+
+    const users = userData.map((project) => project.get({ plain: true }));
+
+    res.render('caloricNeeds', {
+      users,
+      logged_in: req.session.logged_in,
     });
-  } else {
-    res.status(404).end();
+  } catch (err) {
+      res.status(500).json(err);
   }
 });
 
