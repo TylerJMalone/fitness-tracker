@@ -26,23 +26,16 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
+router.get('/login', (req, res) => {
+  res.render('login');
+})
+
 router.get('/exercises', withAuth, async (req, res) => {
     res.render('exercises');
 });
 
 router.get('/caloricNeeds', withAuth, async (req, res) => {
-  try {
-    const userData = await User.findAll();
-
-    const users = userData.map((project) => project.get({ plain: true }));
-
-    res.render('caloricNeeds', {
-      users,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-      res.status(500).json(err);
-  }
+    res.render('caloricNeeds');
 });
 
 module.exports = router;
