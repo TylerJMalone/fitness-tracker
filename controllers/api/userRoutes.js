@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
         email: req.body.email,
         password: req.body.password,
       });
-  
+      console.log(req.body);
       req.session.save(() => {
         req.session.logged_in = true;
   
@@ -70,3 +70,5 @@ router.post('/logout', (req, res) => {
       res.status(404).end();
     }
   });
+
+module.exports = router;
