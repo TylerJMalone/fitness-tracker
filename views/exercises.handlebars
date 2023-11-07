@@ -1,5 +1,9 @@
+    <script type='module'>
+      import saveItem from '/favorites.js';
+    </script>
     <script>
     $(document).ready(function() {
+      var resultContainer = $("#result-container");
       $("form").submit(function(event) {
         event.preventDefault();
         var muscle = $("#muscle").val();
@@ -34,7 +38,6 @@
       }
 
       function displayResults(results) {
-        var resultContainer = $("#result-container");
         resultContainer.empty();
         var favLink = $("<p>").text("Add to favorites");
 
@@ -55,6 +58,25 @@
           }
         }
       }
+      resultContainer.on('click', function getItem(e) {
+        if(e.target.className === 'fav-link') {
+          var textItems = e.target.parentNode.children;
+          var nameString = `"name": "${textItems[1].innerHTML}"`;
+          var typeString = `"type": "${textItems[2].innerHTML}"`;
+          var muscleString = `"muscle": "${textItems[3].innerHTML}"`;
+          var difficultyString = `"difficulty": "${textItems[4].innerHTML}"`;
+          var instructionString = `"instructions": "${textItems[5].innerHTML}"`;
+          var jsonString = `{ 
+          ${nameString},
+          ${typeString},
+          ${muscleString},
+          ${difficultyString},
+          ${instructionString}
+          },`
+          
+          saveItem(jsonString);
+        }
+      });
     });
   </script>
 
