@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
     }
 });
 
+//add favorite
 router.post('/favorites', withAuth, async (req, res) => {
     try {
         const dbFavData = await Favorite.create({

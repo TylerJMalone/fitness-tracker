@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Favorite } = require('../models');
 const withAuth = require('../utils/auth');
 
+//get homepage
 router.get('/', async (req, res) => {
   try {
     const userData = await User.findAll();
@@ -17,6 +18,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+//get signup page
 router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');
@@ -26,22 +28,26 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
+//get login page
 router.get('/login', (req, res) => {
   res.render('login');
 })
 
+//get exercises page
 router.get('/exercises', withAuth, async (req, res) => {
   res.render('exercises', {
       logged_in: req.session.logged_in,
     });
 });
 
+//get caloricNeeds page
 router.get('/caloricNeeds', withAuth, async (req, res) => {
   res.render('caloricNeeds', {
     logged_in: req.session.logged_in,
   });
 });
 
+//get favorites page
 router.get('/favorites', withAuth, async (req, res) => {
   try {
     const favData = await Favorite.findAll({ where: { user_id: req.session.user_id } });
