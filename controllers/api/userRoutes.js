@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Favorite } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // CREATE new user
 router.post('/', async (req, res) => {
@@ -9,7 +10,6 @@ router.post('/', async (req, res) => {
         email: req.body.email,
         password: req.body.password,
       });
-      console.log(req.body);
       req.session.save(() => {
         req.session.logged_in = true;
   
@@ -19,6 +19,24 @@ router.post('/', async (req, res) => {
       console.log(err);
       res.status(500).json(err);
     }
+});
+
+router.post('/favorites', withAuth, async (req, res) => {
+    try {
+        const dbFavData = await Favorite.create({
+            name: req.body.name,
+            type: req.body.type,
+            muscle: req.body.muscle,
+            difficulty: req.body.difficulty,
+            instructions: req.body.instructions,
+            user_id: req.session.user_id,
+        });
+        console.log(dbFavData);
+        res.status(200).json(dbFavData);
+      } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+      }    
 });
 
 // Login
