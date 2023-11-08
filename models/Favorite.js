@@ -43,7 +43,7 @@ Favorite.init(
     {
         sequelize,
         freezeTableName: true,
-        modelName: 'favorite'
+        modelName: 'favorite',
     }
 );
 

@@ -24,7 +24,6 @@ $(document).ready(function() {
         instructions: instructions,
       },
       success: function(results) {
-        console.log(results[0]);
         displayResults(results);
       },
       error: function(error) {
@@ -54,28 +53,24 @@ $(document).ready(function() {
       }
     }
   }
-  resultContainer.on('click', async function getItem(e) {
+  /*resultContainer.on('click', async function getItem(e) {
     if(e.target.className === 'fav-link') {
       var textItems = e.target.parentNode.children;
-      var name = textItems[1].innerHTML;
-      var type = textItems[2].innerHTML;
-      var muscle = textItems[3].innerHTML;
-      var difficulty = textItems[4].innerHTML;
-      var instructions = textItems[5].innerHTML;
-      const response = await fetch('/api/users/favorites', {
-        method: 'POST',
-        body: JSON.stringify({ name, type, muscle, difficulty, instructions }),
-        headers: { 'Content-Type': 'application/json' },
-        });
-    
-        if (response.ok) {
-          alert('Added to favorites');
-        } else {
-          alert('Failed to add');
-        }
-      }
-    });
+      console.log(textItems[1].innerHTML);
+      var name = `"${textItems[1].innerHTML}"`;
+      var type = `"${textItems[2].innerHTML}"`;
+      var muscle = `"${textItems[3].innerHTML}"`;
+      var difficulty = `"${textItems[4].innerHTML}"`;
+      var instructions = `"${textItems[5].innerHTML}"`;
+      var post = $.post('/api/users/favorites', { name: name, type: type, muscle: muscle, difficulty: difficulty, instructions: instructions })
+      post.done( function(data) {
+        console.log(data);
+      });
+    }*/
+  });
 });
+
+
 //Parameters
 //name (optional) - name of exercise. This value can be partial (e.g. press will match Dumbbell Bench Press)
 

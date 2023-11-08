@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Favorite } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -31,11 +31,30 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/exercises', withAuth, async (req, res) => {
-    res.render('exercises');
+  res.render('exercises', {
+      logged_in: req.session.logged_in,
+    });
 });
 
 router.get('/caloricNeeds', withAuth, async (req, res) => {
-    res.render('caloricNeeds');
+  res.render('caloricNeeds', {
+    logged_in: req.session.logged_in,
+  });
+});
+
+router.get('/favorites', withAuth, async (req, res) => {
+  try {
+    const favData = await Favorite.findAll({ where: { user_id: req.session.user_id } });
+
+    const favorites = favData.map((favorite) => favorite.get({ plain: true }));
+
+    res.render('favorites', {
+      favorites,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+      res.status(500).json(err);
+  }
 });
 
 module.exports = router;
