@@ -1,4 +1,13 @@
 {
+  "name": "fitness-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "18.17.1"
+    },
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
@@ -13,8 +22,5 @@
     "request": "^2.88.2",
     "sequelize": "^6.33.0",
     "y": "^0.3.2"
-  }, 
-  "scripts": {
-    "start": "node server.js"
- }
+  }
 }
