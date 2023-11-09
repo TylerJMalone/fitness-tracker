@@ -14,7 +14,7 @@ $(document).ready(function() {
     $.ajax({
       url: 'https://api.api-ninjas.com/v1/exercises',
       headers: {
-        'X-Api-Key': `'${API_KEY}'`
+        'X-Api-Key': `'${process.env.API_KEY}'`
       },
       data: {
         muscle: muscle,
