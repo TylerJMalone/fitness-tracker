@@ -3,6 +3,8 @@
 
 SweatSmart is a powerful fitness tracker app that helps you monitor and improve your fitness goals. With a user-friendly interface and a range of useful features, SweatSmart is designed to make tracking your workouts and progress simple and efficient.
 
+![Screenshot](https://github.com/TylerJMalone/fitness-tracker/blob/main/Screenshots/Screenshot%20(49).png)
+
 ## Features
 
 - **Activity Tracking**: Record your workouts, including running, cycling, swimming, and more. Track essential metrics such as duration, distance, pace, and calories burned.
@@ -83,3 +85,6 @@ SweatSmart is licensed under the [MIT License](https://opensource.org/licenses/M
 For any queries or support, please contact the SweatSmart team at [support@sweatsmart.com](mailto:support@sweatsmart.com).
 
 We appreciate your interest in SweatSmart and hope this app helps you achieve your fitness goals. Stay motivated and keep sweating smartly!
+
+## Website Link
+[SweatSmart](https://sweatsmart-aec748193627.herokuapp.com/)
